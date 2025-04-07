@@ -1,0 +1,49 @@
+﻿@model SpaceSoftSolutions.Models.Task
+@{
+    ViewData["Title"] = "AssignTasks";
+}
+
+<h1>AssignTasks</h1>
+
+
+
+
+<form asp-action="AssignTasks">
+    @* <input type="hidden" name="ManagerId" value="@ViewBag.ManagerId" /> *@
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="TaskName" class="control-label"></label>
+        <input asp-for="TaskName" class="form-control" />
+        <span asp-validation-for="TaskName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input type="date" asp-for="StartDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="date" asp-for="EndDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Assign to</label>
+        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
